@@ -1,6 +1,6 @@
 <?php
 
-$dsn = 'mysql:hostname=localhost;port=3306;dbname=inventory_system;charset=utf8mb4;';
+$dsn = 'mysql:host=localhost;port=3306;dbname=inventory_system;charset=utf8mb4;';
 $username = 'root';
 $password = '1234';
 

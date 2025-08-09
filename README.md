@@ -4,11 +4,14 @@ A comprehensive inventory management system built with PHP, MySQL, and Bootstrap
 
 ## 🚀 Technology Stack
 
-- **Frontend:** HTML5, CSS3, Bootstrap 5
-- **Backend:** PHP 8.x (Core PHP, no frameworks)
-- **Database:** MySQL 8.x with InnoDB engine
+- **Frontend:** HTML5, CSS3, Bootstrap 5.3.3, Bootstrap Icons
+- **Backend:** PHP 8.x (Core PHP with modular structure)
+- **Database:** MySQL 8.x with InnoDB engine and prepared statements
+- **Charts:** Chart.js for interactive data visualization
 - **Server:** Apache (XAMPP/LAMP compatible)
-- **Architecture:** Server-rendered HTML with modular PHP structure
+- **Architecture:** Server-rendered HTML with responsive design
+- **Authentication:** Session-based with role management
+- **API:** Custom PHP endpoints for chart data and exports
 
 ## 🏗️ System Architecture
 
@@ -124,52 +127,60 @@ CREATE TABLE transactions (
 
 ```
 inventory-app/
+├── api/
+│   ├── chart-data.php          # Chart data API endpoint
+│   ├── chart-data-simple.php   # Simplified chart data
+│   └── export-print.php        # Export and print functionality
 ├── assets/
 │   ├── css/
-│   │   └── custom.css
-│   ├── js/
-│   │   └── app.js
-│   └── img/
+│   │   └── style.css           # Custom styles and responsive design
+│   └── js/
+│       ├── dashboard.js        # Dashboard functionality
+│       └── dashboard-simple.js # Simplified dashboard scripts
+├── auth/
+│   ├── login.php              # User authentication
+│   ├── logout.php             # Session termination
+│   └── register.php           # User registration
+├── categories/
+│   ├── index.php              # List all categories
+│   ├── create.php             # Add new category
+│   ├── edit.php               # Edit category details
+│   └── delete.php             # Remove category
+├── dashboard/
+│   └── index.php              # Main dashboard with analytics
+├── debug/
+│   ├── api-test.php           # API testing utilities
+│   └── chart-debug.php        # Chart debugging tools
 ├── includes/
-│   ├── config.php          # Database configuration
-│   ├── header.php          # Common header template
-│   ├── footer.php          # Common footer template
-│   └── functions.php       # Utility functions
-├── modules/
-│   ├── auth/
-│   │   ├── login.php
-│   │   ├── logout.php
-│   │   └── register.php
-│   ├── categories/
-│   │   ├── index.php       # List categories
-│   │   ├── create.php      # Add new category
-│   │   ├── edit.php        # Edit category
-│   │   └── delete.php      # Delete category
-│   ├── suppliers/
-│   │   ├── index.php
-│   │   ├── create.php
-│   │   ├── edit.php
-│   │   └── delete.php
-│   ├── items/
-│   │   ├── index.php       # Inventory listing
-│   │   ├── create.php      # Add new item
-│   │   ├── edit.php        # Edit item details
-│   │   ├── delete.php      # Remove item
-│   │   └── stock.php       # Stock management
-│   ├── stock-logs/
-│   │   ├── index.php       # View stock movements
-│   │   └── create.php      # Log stock changes
-│   ├── transactions/
-│   │   ├── index.php       # Transaction history
-│   │   ├── purchase.php    # Record purchases
-│   │   └── sale.php        # Record sales
-│   └── reports/
-│       ├── inventory.php   # Inventory reports
-│       ├── low-stock.php   # Low stock alerts
-│       └── export.php      # Data export
-├── dashboard.php           # Main dashboard
-├── index.php              # Landing page/redirect
-└── package.json           # Project configuration
+│   ├── config.php             # Database configuration & functions
+│   ├── header.php             # Common header template
+│   ├── footer.php             # Common footer template
+│   └── sidebar.php            # Navigation sidebar
+├── inventory/
+│   ├── index.php              # Items listing and management
+│   ├── create.php             # Add new inventory item
+│   ├── edit.php               # Edit item details
+│   └── delete.php             # Remove inventory item
+├── stocks/
+│   ├── index.php              # Stock movement logs
+│   ├── create.php             # Log stock in/out operations
+│   ├── edit.php               # Edit stock entries
+│   └── delete.php             # Remove stock logs
+├── suppliers/
+│   ├── index.php              # Supplier management
+│   ├── create.php             # Add new supplier
+│   ├── edit.php               # Edit supplier information
+│   └── delete.php             # Remove supplier
+├── transactions/
+│   ├── index.php              # Transaction history
+│   ├── create.php             # Record new transactions
+│   ├── edit.php               # Edit transaction details
+│   └── delete.php             # Remove transactions
+├── index.php                  # Landing page/main entry point
+├── package.json               # Project configuration
+├── README.md                  # Project documentation
+├── AI-DESIGN-PROMPT.md        # AI design specifications
+└── DESIGN.md                  # Design guidelines
 ```
 
 ## 🔐 Security Features
@@ -183,30 +194,51 @@ inventory-app/
 
 ## 🎯 Key Features
 
-### For Administrators
-- Complete system access and user management
-- Full CRUD operations on all entities
-- System configuration and maintenance
-- Advanced reporting and analytics
+### 📊 Dashboard & Analytics
+- **Interactive Dashboard** with real-time statistics and charts
+- **Chart.js Integration** for visual data representation
+- **Stock Trends Visualization** with line charts
+- **Category Distribution** with doughnut charts
+- **Responsive Design** with Bootstrap 5 and offcanvas navigation
+- **Export/Print Functionality** for reports and data
 
-### For Staff Users
-- Inventory viewing and basic stock operations
-- Stock in/out logging with reason tracking
-- Transaction recording for sales/purchases
-- Limited access to sensitive operations
+### 🔐 Authentication & Security
+- **Role-based Access Control** (Admin/Staff permissions)
+- **Secure Session Management** with proper logout handling
+- **Password Encryption** using PHP's password_hash()
+- **Modal Confirmations** for critical actions
+- **Input Validation** and SQL injection prevention
 
-### Inventory Management
-- **Real-time stock tracking** with automatic quantity updates
-- **Low stock alerts** when items reach reorder levels
-- **SKU-based item identification** for unique product tracking
-- **Supplier integration** for purchase management
-- **Category organization** for better product classification
+### 📦 Inventory Management
+- **Complete Item Management** with SKU tracking
+- **Real-time Stock Monitoring** with quantity updates
+- **Category Organization** for better product classification
+- **Supplier Integration** with contact management
+- **Low Stock Alerts** and reorder level tracking
+- **Stock Movement Logging** with audit trails
 
-### Audit Trail
-- **Complete stock movement history** with user accountability
-- **Transaction logging** for all financial activities
-- **Change tracking** with timestamps and user identification
-- **Reason codes** for all inventory adjustments
+### 💼 Transaction Processing
+- **Purchase Recording** with supplier tracking
+- **Sales Transactions** with automatic stock updates
+- **Financial Tracking** with price and quantity management
+- **Transaction History** with detailed logs
+- **Reference Number** tracking for accountability
+
+### 🎨 User Interface
+- **Responsive Design** that works on all devices
+- **Bootstrap 5** modern UI components
+- **Mobile-First Approach** with collapsible sidebar
+- **Success/Error Notifications** for user feedback
+- **Intuitive Navigation** with clear menu structure
+- **Data Tables** with search and sorting capabilities
+
+### 📈 Reporting & Analytics
+- **Dashboard Analytics** with key performance indicators
+- **Stock Level Reports** with current inventory status
+- **Transaction Reports** with sales and purchase history
+- **Supplier Performance** tracking and management
+- **Low Stock Alerts** with automatic notifications
+- **Export Capabilities** for external reporting
 
 ## 🚀 Installation & Setup
 
@@ -305,12 +337,29 @@ inventory-app/
 
 ## 🎨 UI/UX Design
 
-- **Bootstrap 5** for responsive, modern interface
-- **Consistent navigation** with role-based menu items
-- **Modal dialogs** for create/edit operations
-- **Toast notifications** for user feedback
-- **Data tables** with sorting and search capabilities
-- **Dashboard widgets** for key metrics and alerts
+### Responsive Design Features
+- **Mobile-First Approach** with Bootstrap 5 responsive grid
+- **Offcanvas Navigation** for mobile devices with hamburger menu
+- **Responsive Charts** that adapt to different screen sizes
+- **Adaptive Layouts** that work seamlessly across all devices
+- **Touch-Friendly Interface** optimized for mobile interactions
+
+### Design Components
+- **Bootstrap 5.3.3** for modern, consistent styling
+- **Bootstrap Icons** for scalable vector icons
+- **Modal Dialogs** for create/edit operations and confirmations
+- **Toast Notifications** and alert messages for user feedback
+- **Data Tables** with sorting, search, and pagination
+- **Dashboard Widgets** with interactive charts and key metrics
+- **Success/Error Messages** with contextual styling
+- **Professional Color Scheme** with primary, secondary, and accent colors
+
+### Navigation & Layout
+- **Fixed Sidebar** on desktop with collapsible sections
+- **Mobile Offcanvas Menu** that slides in from the side
+- **Breadcrumb Navigation** for easy location awareness
+- **Consistent Header** with user controls and branding
+- **Footer Information** with relevant links and credits
 
 ## 📈 Performance Considerations
 
