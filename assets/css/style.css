@@ -1,0 +1,242 @@
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: #f8fafc;
+        font-size: small;
+    }
+
+    /* Responsive layout adjustments */
+    @media (min-width: 992px) {
+        #main-content {
+            margin-left: 230px !important;
+        }
+    }
+
+    /* Mobile header bar styling */
+    .mobile-header {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    /* Mobile menu button styling */
+    .mobile-menu-btn {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 123, 255, 0.2);
+        transition: all 0.2s ease;
+    }
+
+    .mobile-menu-btn:hover {
+        background: rgba(0, 123, 255, 0.1);
+        transform: translateY(-1px);
+    }
+
+    .hover-nav:hover{
+        transition: background-color 0.3s ease;
+        background-color: rgb(246, 246, 255);
+    }
+
+    /* Offcanvas customizations */
+    .offcanvas {
+        width: 280px;
+    }
+
+    .offcanvas-body {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .offcanvas .nav-pills .nav-link {
+        border-radius: 0.375rem;
+        margin-bottom: 0.25rem;
+    }
+
+    /* Ensure offcanvas appears above mobile header */
+    .offcanvas {
+        z-index: 1045;
+    }
+
+    .offcanvas-backdrop {
+        z-index: 1044;
+    }
+
+    /* Ensure proper spacing on mobile */
+    @media (max-width: 991.98px) {
+        .container-fluid {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        
+        /* Ensure mobile header stays on top */
+        .mobile-header {
+            z-index: 1040 !important;
+        }
+    }
+
+    /* Logout button styling */
+    .logout-btn {
+        transition: all 0.2s ease;
+        text-decoration: none !important;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .logout-btn:hover {
+        color: #dc3545 !important;
+        background-color: rgba(220, 53, 69, 0.1);
+        transform: scale(1.1);
+    }
+
+    .logout-btn:focus {
+        box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.25);
+    }
+
+    /* Modal enhancements */
+    .modal-content {
+        border: none;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-header {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+
+    .modal-footer {
+        background-color: #f8f9fa;
+    }
+
+    /* Chart loading and error states */
+    .chart-loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 200px;
+        color: #6c757d;
+        font-size: 0.9rem;
+    }
+
+    .chart-error {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 200px;
+        color: #dc3545;
+        font-size: 0.9rem;
+        flex-direction: column;
+    }
+
+    .chart-error i {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Responsive chart containers */
+    .chart-container {
+        position: relative;
+        width: 100%;
+    }
+
+    /* Responsive height only for line graphs */
+    .chart-container.responsive-chart {
+        height: 350px; /* Larger height for line charts */
+    }
+
+    /* Dynamic height adjustments for line charts on different screen sizes */
+    @media (min-width: 768px) {
+        .chart-container.responsive-chart {
+            height: 400px;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .chart-container.responsive-chart {
+            height: 450px;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .chart-container.responsive-chart {
+            height: 500px;
+        }
+    }
+
+    /* Ensure charts fill their containers completely */
+    .chart-container canvas {
+        max-width: 100%;
+        height: 100% !important;
+        max-height: 100%;
+    }
+
+    /* Dashboard responsive improvements */
+    @media (max-width: 575.98px) {
+        /* Extra small devices */
+        .container-fluid {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+        }
+        
+        .card-body {
+            padding: 1rem;
+        }
+        
+        .btn-group .btn {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .h4 {
+            font-size: 1.25rem;
+        }
+    }
+
+    @media (max-width: 767.98px) {
+        /* Small devices */
+        .chart-container {
+            height: 200px !important;
+        }
+        
+        /* Stack header elements on mobile */
+        header .d-flex {
+            gap: 1rem;
+        }
+        
+        /* Improve spacing on mobile */
+        .row.g-3 {
+            --bs-gutter-x: 0.75rem;
+            --bs-gutter-y: 0.75rem;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 991.98px) {
+        /* Medium devices (tablets) */
+        .chart-container {
+            height: 250px !important;
+        }
+    }
+
+    /* Export/Print button enhancements */
+    .export-print-controls .btn {
+        transition: all 0.2s ease;
+    }
+
+    .export-print-controls .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    /* Loading spinner */
+    .spinner-border-sm {
+        width: 1rem;
+        height: 1rem;
+        border-width: 0.15em;
+    }
